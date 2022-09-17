@@ -15,7 +15,6 @@ router.route('/:id')
     .delete(deleteCredential)
 
 router.route('/:idTarjeta')
-    .get(getCredentialByIdCard)
 
 
 module.exports = router;

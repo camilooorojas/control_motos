@@ -22,19 +22,18 @@ studentsCtrl.createStudent = async (req, res) => {
 };
 
 studentsCtrl.getStudent = async (req, res) => {        
-    // const student = await Student.findById(req.params.id);
-    // res.json(student);
     const student = await Student.find({'codigo': req.params.id});
     res.json(student);
 };
 
 studentsCtrl.updateStudent  = async (req, res) => {
-    const { cedula, codigo, nombre, apellido} = req.body;
-    await Note.findOneAndUpdate(req.params.id, {
+    const { cedula, codigo, nombre, apellido, credential } = req.body;
+    await Student.findByIdAndUpdate(req.params.id, {
         cedula,
         codigo,
         nombre,
-        apellido
+        apellido,
+        credential
     });
     res.json({title: 'Update Student'})
 };
