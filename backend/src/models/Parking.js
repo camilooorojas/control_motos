@@ -9,8 +9,7 @@ const parkingSchema = new Schema({
         ref: 'Credentials'
     },
     inside: {
-        type: Boolean,
-        required: true
+        type: Boolean        
     }
 }, {
     timestamps: true //fecha de creacion y actualizacion
