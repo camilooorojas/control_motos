@@ -1,11 +1,23 @@
 import styles from './infoEstudianteStyles.module.css';
 
 import { CardEstudiante } from './components/CardStudent/CardEstudiante';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 function InfoEstudiante(props) {
-  const { student,bikes } = props;
+  const { student,bikes,setBikes} = props;
+
+  useEffect(() => {
+    const loadBikeInfo = async (code) => {
+    const res = await axios.get(`http://localhost:4000/api/credentials/${code}`);
+    setBikes(prev => [...prev, res.data]);
+    }
+    setBikes([]);
+     student?.credential.forEach(element => {
+      loadBikeInfo(element);
+    });
+  }, [student, setBikes])
   
-  console.log(bikes);
   
   return (
     <div className={styles.container}>
