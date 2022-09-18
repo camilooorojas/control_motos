@@ -8,13 +8,12 @@ function InfoEstudiante(props) {
   const { student, bikes, setBikes} = props;
 
   useEffect(() => {
-    console.log(student);
     const loadBikeInfo = async (code) => {
     const res = await axios.get(`http://localhost:4000/api/credentials/${code}`);
     setBikes(prev => [...prev, res.data]);
     }
     setBikes([]);
-     student?.credential.forEach(element => {
+      student?.credential.forEach(element => {
       loadBikeInfo(element);
     });
   }, [student, setBikes])
