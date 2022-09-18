@@ -5,16 +5,6 @@ import { CardEstudiante } from './components/CardStudent/CardEstudiante';
 function InfoEstudiante(props) {
   const { student,bikes } = props;
   
-  const data = [
-    {
-      plate: "aaa",
-      propertyId: 123
-    },
-    {
-      plate: "ccc",
-      propertyId: 456
-    }
-  ]
   console.log(bikes);
   
   return (

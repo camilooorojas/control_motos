@@ -1,5 +1,7 @@
 .container{
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
+  padding-bottom: 10rem;
   background: var(--redGray);
   display: flex;
   flex-direction: column;
