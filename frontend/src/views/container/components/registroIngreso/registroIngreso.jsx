@@ -4,10 +4,9 @@ import styles from './registroIngresoStyles.module.css';
 
 function RegistroIngreso(props) {
   
-  const [students, setStudents] = useState({});
+  const [students, setStudents] = useState([]);
   
   useEffect(() => {
-    
     const petition = async () => {
       console.log("imprime")
       
@@ -21,7 +20,8 @@ function RegistroIngreso(props) {
   return (
     <div className={styles.container}>
       <h2>Registro Ingreso</h2>
-      
+      <input type="text" className={styles.inputName} placeholder="Digite código del estudiante..." />
+      <button className={styles.findButton}>Buscar</button>
     </div>
   );
 }

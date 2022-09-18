@@ -11,7 +11,7 @@ function NavBar() {
             {/* Links to the diferent routes define with react router in the container component */}
             <Link to="/ingreso">Ingreso</Link>
         </li>
-          <li>
+        <li>
             <Link to="/salida">Salida</Link>
         </li>
         <li>

@@ -1,0 +1,15 @@
+.inputName{
+  width: 45.6rem;
+  height: 3.8rem;
+  font-size: 1.8rem;
+  border-radius: 1rem;
+  border:none;
+}
+.findButton{
+  width: 12.1rem;
+  height: 3rem;
+  background: var(--red);
+  border: none;
+  color: var(--white);
+  font-size: 1.4rem;
+}
