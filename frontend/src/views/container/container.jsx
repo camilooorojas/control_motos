@@ -14,7 +14,8 @@ function Container() {
     <div className={styles.container}>
       <BrowserRouter>
         <NavBar />
-        <h1>PARQUEADERO UD</h1>
+        <h1 className={styles.title}>PARQUEADERO UD</h1>
+
         <Routes>
           <Route path="/" element={<RegistroIngreso />} />
           <Route path="/ingreso" element={<RegistroIngreso />} />
