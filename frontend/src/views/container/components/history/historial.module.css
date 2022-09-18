@@ -2,7 +2,9 @@
   width: 100rem;
 
 }
-
+h2{
+text-align: center;
+}
 .title{
   background: black;
   color: var(--white);

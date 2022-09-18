@@ -38,4 +38,4 @@ function Historial() {
   );
 }
 
-export { Historial };
+export { Historial }
