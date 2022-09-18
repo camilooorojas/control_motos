@@ -1,0 +1,29 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import styles from './registroIngresoStyles.module.css';
+
+function RegistroIngreso(props) {
+  
+  const [students, setStudents] = useState({});
+  
+  useEffect(() => {
+    
+    const petition = async () => {
+      console.log("imprime")
+      
+      const res = await axios.get(`http://localhost:4000/api/students`);
+      
+      setStudents(res.data);
+    };
+    petition();
+  }, []);
+  console.log(students);
+  return (
+    <div className={styles.container}>
+      <h2>Registro Ingreso</h2>
+      
+    </div>
+  );
+}
+
+export {RegistroIngreso}

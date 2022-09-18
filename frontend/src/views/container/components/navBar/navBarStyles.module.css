@@ -1,0 +1,30 @@
+.navBar{
+  background: var(--red);
+  width: 100%;
+  height: 90rem;
+  
+  
+  padding: 20rem;
+}
+img{
+  width: 70rem;
+}
+
+.menu__elements{
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu__elements li {
+  font-size: 20rem;
+  
+  margin-left: 30rem;
+  font-weight: 600;
+}
+.menu__elements li a{
+  text-decoration: none;
+  color:white;
+}

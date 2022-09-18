@@ -1,0 +1,14 @@
+.container{
+  height: 100vh;
+  background: var(--redGray);
+}
+.container h1{
+  font-weight: 600;
+  font-size: 36rem;
+  color: var(--white);
+}
+.container h2{
+  font-weight: 600;
+  font-size: 36rem;
+  color: var(--white);
+}
