@@ -22,7 +22,6 @@
 .findButton:hover{
   background: var(--redLight);
   transform: scale(1.1);
-
 }
 .findButton:active{
   background: var(--redDark);
