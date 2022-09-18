@@ -12,23 +12,25 @@ function RegistroIngreso(props) {
   const handleClick = (event) => {
     if (event.key === 'Enter') {
       callApi(search);
-      
     }
   }
   const callApi = async (code) => {
     setBikes([]);
-    const res = await axios.get(`http://localhost:4000/api/students/${code}`);
-    setStudents(res.data);
+    setStudents([]);
+    console.log(students);
+    if (code.length > 0) {
+      const res = await axios.get(`http://localhost:4000/api/students/${code}`);
+      setStudents(res.data);
+    }
+    
   }
 
   return (
     <div className={"d-flex flex-column justify-content-center align-items-center"}>
       <h2>Registro Ingreso</h2>
-      <input type="text" value={search} onKeyDown={handleClick} onChange={handleSearch} className={styles.inputName} placeholder="Digite código del estudiante..." />
+      <input autoFocus type="number" value={search} onKeyDown={handleClick} onChange={handleSearch} className={styles.inputName} placeholder="Digite código del estudiante..." />
       <button className={styles.findButton} onClick={() => { callApi(search)}}>Buscar</button>
-      
-      <InfoEstudiante student={students[0]} bikes={bikes} setBikes={setBikes} />
-      
+      <div className={styles.infoData}>{students.length > 0 ? <><InfoEstudiante student={students[0]} bikes={bikes} setBikes={setBikes} /></> : <h2>El estudiante no está registrado</h2>}</div>
     </div>
   );
 }

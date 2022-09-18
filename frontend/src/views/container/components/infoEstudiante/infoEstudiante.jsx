@@ -5,9 +5,10 @@ import axios from 'axios';
 import { useEffect } from 'react';
 
 function InfoEstudiante(props) {
-  const { student,bikes,setBikes} = props;
+  const { student, bikes, setBikes} = props;
 
   useEffect(() => {
+    console.log(student);
     const loadBikeInfo = async (code) => {
     const res = await axios.get(`http://localhost:4000/api/credentials/${code}`);
     setBikes(prev => [...prev, res.data]);

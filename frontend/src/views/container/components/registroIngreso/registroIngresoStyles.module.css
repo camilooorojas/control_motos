@@ -27,3 +27,7 @@
   background: var(--redDark);
   transform: scale(0.9);
 }
+.infoData{
+  margin-top: 10rem;
+
+}
