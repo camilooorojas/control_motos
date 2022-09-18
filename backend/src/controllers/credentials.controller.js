@@ -22,13 +22,13 @@ credentialsCtrl.createCredential = async (req, res) => {
 credentialsCtrl.getCredential = async (req, res) => {
     debugger;
     let filter = parseFloat(req.params.id);
-    const credential = await Credential.find({'id_tarjeta': filter});
+    const credential = await Credential.findById(req.params.id);
     res.json(credential);
 };
 
 credentialsCtrl.updateCredential  = async (req, res) => {
     const { placa, id_tarjeta} = req.body;
-    await Student.findOneAndUpdate(req.params.id, {
+    await Credential.findOneAndUpdate(req.params.id, {
         placa,
         id_tarjeta,       
     });

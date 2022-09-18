@@ -2,7 +2,9 @@ import styles from './infoEstudianteStyles.module.css';
 
 import { CardEstudiante } from './components/CardStudent/CardEstudiante';
 
-function InfoEstudiante() {
+function InfoEstudiante(props) {
+  const { student,bikes } = props;
+  
   const data = [
     {
       plate: "aaa",
@@ -13,22 +15,23 @@ function InfoEstudiante() {
       propertyId: 456
     }
   ]
-
+  console.log(bikes);
+  
   return (
     <div className={styles.container}>
       <h2>Datos del estudiante</h2>
       <div className={styles.bg_white}>
         <div className={styles.student_data}>
-          <div>Nombre: </div>
-          <div>Apellido: </div>
-          <div>Cédula: </div>
-          <div>Código: </div>
+          <div>Nombre: {student?.nombre}</div>
+          <div>Apellido: {student?.apellido}</div>
+          <div>Cédula: {student?.cedula}</div>
+          <div>Código: {student?.codigo}</div>
         </div>
         <div className={styles.card_content}>
-          {data?.map(item => (
-            <CardEstudiante 
-              propertyId={item.plate}
-              plate={item.propertyId}
+          {bikes?.map((item, index) => (
+            <CardEstudiante  key={index}
+              propertyId={item.id_tarjeta}
+              plate={item.placa}
             />
           ))}
         </div>
