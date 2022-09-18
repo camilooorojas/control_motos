@@ -1,15 +1,30 @@
+
 .inputName{
   width: 45.6rem;
   height: 3.8rem;
   font-size: 1.8rem;
   border-radius: 1rem;
   border:none;
+  margin-top: 13rem;
+  margin-bottom: 13rem;
 }
 .findButton{
   width: 12.1rem;
-  height: 3rem;
+  height: 4rem;
   background: var(--red);
   border: none;
   color: var(--white);
-  font-size: 1.4rem;
+  font-size: 2rem;
+  border-radius: 1rem;
+  display: block;
+  transition: all ease 0.2s;
+}
+.findButton:hover{
+  background: var(--redLight);
+  transform: scale(1.1);
+
+}
+.findButton:active{
+  background: var(--redDark);
+  transform: scale(0.9);
 }

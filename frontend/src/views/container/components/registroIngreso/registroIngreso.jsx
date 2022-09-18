@@ -18,7 +18,7 @@ function RegistroIngreso(props) {
   }, []);
   console.log(students);
   return (
-    <div className={styles.container}>
+    <div className={"d-flex flex-column justify-content-center align-items-center"}>
       <h2>Registro Ingreso</h2>
       <input type="text" className={styles.inputName} placeholder="Digite código del estudiante..." />
       <button className={styles.findButton}>Buscar</button>
