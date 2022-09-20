@@ -13,6 +13,7 @@ app.use(express.json());
 // routes
 app.use('/api/students', require('./routes/students'));    
 app.use('/api/credentials', require('./routes/credentials')); 
+app.use('/api/credentials/tarjeta', require('./routes/credentials')); 
 //app.use('/api/credentials/idCard', require('./routes/credentials')); 
 
 
