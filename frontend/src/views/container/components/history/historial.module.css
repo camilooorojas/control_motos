@@ -1,0 +1,29 @@
+.container{
+  width: 100rem;
+
+}
+h2{
+text-align: center;
+}
+.title{
+  background: black;
+  color: var(--white);
+}
+.tableBlack{
+  background: black;
+  color: var(--white);
+  font-size: 2rem;
+}
+.tableWhite{
+background: var(--white);
+  color: black;
+  font-size: 2rem;
+}
+th{
+text-align: center;
+}
+td{
+
+color: black;
+font-size: 2rem;
+}

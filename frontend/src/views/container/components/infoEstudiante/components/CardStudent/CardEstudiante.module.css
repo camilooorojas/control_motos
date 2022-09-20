@@ -1,0 +1,44 @@
+.card_student {
+    background-color: var(--red);
+    color: #fff;
+    width: 30%;
+    padding: 20px;
+    border-radius: 2%;
+    transition: all .4s ease;
+}
+
+.card_student:hover {
+    transform: scale(1.1);
+}
+
+.card_student h3 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.card_student p {
+    font-size: 2rem;
+}
+
+.button_container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.button_container button {
+    border: none;
+    padding: 5px 20px;
+    font-size: 1.5rem;
+    border-radius: 5%;
+    margin-top: 10px;
+    color: var(--red);
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .card_student {
+        width: 90%;
+    }
+}

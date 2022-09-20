@@ -7,7 +7,6 @@ import { RegistroEstudiante } from './components/registroEstudiante/registroEstu
 import { Historial } from './components/history/historial';
 import { MotosIngresadas } from './components/motosIngresadas/motosIngresadas';
 import { InfoEstudiante } from './components/infoEstudiante/infoEstudiante';
-import { RegistroMoto } from './components/registroMoto/registroMoto';
 
 function Container() {
   
@@ -25,7 +24,6 @@ function Container() {
           <Route path="/historial" element={<Historial/>}/>
           <Route path="/motos" element={<MotosIngresadas/>}/>
           <Route path="/info-student" element={<InfoEstudiante/>}/>
-          <Route path="/registrar-moto" element={<RegistroMoto/>}/>
         </Routes>
       </BrowserRouter>
     </div>

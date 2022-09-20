@@ -1,7 +1,41 @@
+import axios from 'axios';
+import { useState } from 'react';
 import styles from './registroEstudianteStyles.module.css';
 //import RegistroMoto from '../registroMoto/registroMoto'
 
+
 function RegistroEstudiante() {
+  const [name, setName] = useState("");
+  const handleName = ({ target: { value } }) => setName(value);
+  const [lastName, setLastName] = useState("");
+  const handleLastName = ({ target: { value } }) => setLastName(value);
+  const [code, setCode] = useState("");
+  const handleCode = ({ target: { value } }) => setCode(value);
+  const [id, setId] = useState("");
+  const handleId = ({ target: { value } }) => setId(value);
+  const sendData = async (e) => {
+    e.preventDefault();
+    const body = {
+      cedula: id,
+      codigo: code,
+      nombre: name,
+      apellido: lastName
+    }
+    const resp = await axios.get(`http://localhost:4000/api/students/${code}`);
+    if (resp.data.length === 0) {
+      const res = await axios.post(`http://localhost:4000/api/students`, body);
+    } else {
+      console.log("Ya existe");
+    }
+    
+  }
+  /* const loadStudentInfo = async (code) => {
+    
+    console.log("info de res",res.data);
+    setUser(res.data);
+  } */
+  
+
   return (
     <div className={styles.container}>
       <h2>Registro Estudiante</h2>
@@ -16,7 +50,7 @@ function RegistroEstudiante() {
           <h3>Cédula:</h3>
           <input required value={id} onChange={ handleId } className={styles.formContainer_input} type="number" placeholder='Digite cédula del estudiante...' />
         </div>
-        <button type='submit' className={styles.formContainer_button}>Continuar</button>        
+        <button type='submit' className={styles.formContainer_button}>Continuar</button>
       </form>
     </div>
   );
