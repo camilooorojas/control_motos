@@ -1,4 +1,7 @@
 import styles from './registroSalidaStyles.module.css';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 function RegistroSalida() {
   return (
