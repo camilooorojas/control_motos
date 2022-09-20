@@ -15,4 +15,4 @@ const parkingSchema = new Schema({
     timestamps: true //fecha de creacion y actualizacion
 });
 
-module.exports = model('Parking', parkingSchema)
+module.exports = model('Parkings', parkingSchema)
