@@ -1,0 +1,14 @@
+.container {
+    text-align: center;
+}
+
+.container input {
+    width: 45.6rem;
+    height: 3.8rem;
+    font-size: 1.8rem;
+    border-radius: 1rem;
+    border: none;
+    margin-top: 13rem;
+    margin-bottom: 13rem;
+    padding-left: 10px;
+}

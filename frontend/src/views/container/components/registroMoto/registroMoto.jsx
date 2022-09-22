@@ -11,6 +11,7 @@ function RegistroMoto(props) {
     const [idTarjeta, setIdTarjeta] = useState("");
     const handleIdTarjeta = ({ target: { value } }) => setIdTarjeta(value);
     const [modalOpen, setModalOpen] = useState(false);
+    let addCredential = [];
 
     Modal.setAppElement('#root');
 
@@ -55,18 +56,22 @@ function RegistroMoto(props) {
             console.log("inffo", responseC.data[0]._id);
             console.log("estudiante lo que existe", student[0]);
             console.log("estudiante credencial", student[0].credential.length);
-            if(student[0].credential.length === 0){
-                console.log("Es nulo")
-                const addCredential = {
-                    credential: responseC.data[0]._id
-                }
-                const res = await axios.put(`http://localhost:4000/api/students/${student[0]?._id}`, addCredential);    
+            addCredential.push(
+                responseC.data[0]._id
+            );
+            if(student[0].credential.length !== 0){
+                console.log("No es nulo", student[0])
+                student[0].credential.forEach(credential => {
+                    addCredential.push(credential);
+                });
+                
             }
-            else{
-                console.log("No es nulo", student[0].credential)
-                const addCredential = student[0].credential.push(responseC.data[0]._id);
-                const res = await axios.put(`http://localhost:4000/api/students/${student[0]?._id}`, addCredential);
+            console.log("addCredential: ", addCredential)
+            const body ={
+                credential: addCredential
             }
+            const res = await axios.put(`http://localhost:4000/api/students/${student[0]?._id}`, body);    
+            console.log("res: ", res)
             
         }
         setModalOpen((prev) => !prev);
@@ -101,7 +106,7 @@ function RegistroMoto(props) {
                             <p>Registro exitoso!</p>
                         </div>
                         <div className="footer">                           
-                            <Link to="/ingreso">
+                            <Link to="/ingreso" onClick={() => setModalOpen(false)}>
                                 <button>Continuar</button>
                             </Link>
 

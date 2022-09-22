@@ -5,6 +5,7 @@
     padding: 20px;
     border-radius: 2%;
     transition: all .4s ease;
+    margin-top: 3rem;
 }
 
 .card_student:hover {

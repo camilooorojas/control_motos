@@ -70,3 +70,13 @@
   #cancelBtn {
     background-color: crimson;
   }
+
+  .containerTable {
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+
+  .containerTable thead {
+    position: sticky;
+    top: 0;
+  }
