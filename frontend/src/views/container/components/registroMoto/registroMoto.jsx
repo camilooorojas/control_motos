@@ -51,12 +51,23 @@ function RegistroMoto(props) {
         const respC = await axios.post(`http://localhost:4000/api/credentials`, body);
         if (respC?.data?.message === "Credential saved") {
             console.log("tipo: ", typeof (idTarjeta));
-            const responseC = await axios.get(`http://localhost:4000/api/credentials/tarjeta/${idTarjeta}`);
-            const addCredential = {
-                credential: responseC.data[0]._id
+            const responseC = await axios.get(`http://localhost:4000/api/credentials/tarjeta/${idTarjeta}`);           
+            console.log("inffo", responseC.data[0]._id);
+            console.log("estudiante lo que existe", student[0]);
+            console.log("estudiante credencial", student[0].credential.length);
+            if(student[0].credential.length === 0){
+                console.log("Es nulo")
+                const addCredential = {
+                    credential: responseC.data[0]._id
+                }
+                const res = await axios.put(`http://localhost:4000/api/students/${student[0]?._id}`, addCredential);    
             }
-            console.log("inffo", responseC.data[0]._id)
-            const res = await axios.put(`http://localhost:4000/api/students/${student[0]?._id}`, addCredential);
+            else{
+                console.log("No es nulo", student[0].credential)
+                const addCredential = student[0].credential.push(responseC.data[0]._id);
+                const res = await axios.put(`http://localhost:4000/api/students/${student[0]?._id}`, addCredential);
+            }
+            
         }
         setModalOpen((prev) => !prev);
     }
