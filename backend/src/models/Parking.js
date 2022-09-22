@@ -1,15 +1,25 @@
 const { Schema, model, default: mongoose } = require('mongoose');
 const parkingSchema = new Schema({
-    student: {
-        type: Schema.Types.ObjectId,        
-        ref: 'Students'
+    cedula: {
+        type: Number,                
     },
-    credential: {
-        type: Schema.Types.ObjectId,        
-        ref: 'Credentials'
+    codigo: {
+        type: Number     
+    },
+    nombre: {
+        type: String,                
+    },
+    apellido: {
+        type: String     
+    },
+    placa: {
+        type: String,                
+    },
+    id_tarjeta: {
+        type: String     
     },
     inside: {
-        type: Boolean        
+        type: Number     
     }
 }, {
     timestamps: true //fecha de creacion y actualizacion

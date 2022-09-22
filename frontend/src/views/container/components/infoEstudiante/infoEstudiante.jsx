@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 
 function InfoEstudiante(props) {
-  const { student, bikes, setBikes} = props;
+  const { student, bikes, setBikes, setNewMoto} = props;
 
   useEffect(() => {
     const loadBikeInfo = async (code) => {
