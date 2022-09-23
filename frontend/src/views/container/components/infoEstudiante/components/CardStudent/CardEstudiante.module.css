@@ -8,6 +8,21 @@
     margin-top: 3rem;
 }
 
+.card_student .icons{
+    display: flex;
+    align-items: flex-end;
+}
+
+.card_student svg{
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+.card_student svg:hover{
+    color: rgb(157, 157, 157);
+}
+
 .card_student:hover {
     transform: scale(1.1);
 }
@@ -24,7 +39,7 @@
 
 .button_container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     width: 100%;
 }
 

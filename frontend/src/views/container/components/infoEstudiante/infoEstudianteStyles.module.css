@@ -13,6 +13,7 @@
 }
 
 .student_data {
+    
     background-color: #fff;
     border-radius: 20px;
     padding: 15px;
@@ -22,8 +23,14 @@
     font-size: 2rem;
     margin-bottom: 50px;
     font-weight: bold;
+    position: relative;
 }
-
+.student_data svg{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
 .student_data div {
     margin-bottom: 10px;
 }

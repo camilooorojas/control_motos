@@ -15,34 +15,6 @@ function RegistroMoto(props) {
 
     Modal.setAppElement('#root');
 
-    const stylesModal = {
-        container: {
-            top: '20%',
-            left: '20%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-        },
-        modal: {
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: 300,
-            width: '80%',
-            borderRadius: 10,
-            borderWidth: 1,
-            borderColor: '#fff',
-            marginTop: 80,
-            marginLeft: 40,
-        },
-        text: {
-            color: '#3f2949',
-            marginTop: 10,
-        },
-        close: {
-        },
-    };
-
     const sendDataMoto = async (e) => {
         e.preventDefault();
         const body = {
@@ -64,7 +36,7 @@ function RegistroMoto(props) {
             const body ={
                 credential: addCredential
             }
-            const res = await axios.put(`http://localhost:4000/api/students/${student?._id}`, body);    
+            await axios.put(`http://localhost:4000/api/students/${student?._id}`, body);    
             
         }
         setModalOpen((prev) => !prev);

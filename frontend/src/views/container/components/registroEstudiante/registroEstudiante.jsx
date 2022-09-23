@@ -34,7 +34,7 @@ function RegistroEstudiante() {
     if (resp?.data?.length === 0) {
       
       setStudent(resp.data);
-      const res = await axios.post(`http://localhost:4000/api/students`, body);
+      await axios.post(`http://localhost:4000/api/students`, body);
       const response = await axios.get(`http://localhost:4000/api/students/${code}`);
       setStudent(response.data);
       updateFlag();

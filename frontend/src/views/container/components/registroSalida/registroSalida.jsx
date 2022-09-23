@@ -1,45 +1,12 @@
-import axios from 'axios';
+
 import { useState } from 'react';
-import { InfoEstudiante } from '../infoEstudiante/infoEstudiante';
 import styles from './registroSalidaStyles.module.css';
 import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
 
-const stylesModal = {
-	container: {
-		top: '20%',
-		left: '20%',
-		right: 'auto',
-		bottom: 'auto',
-		marginRight: '-50%',
-		transform: 'translate(-50%, -50%)',
-	},
-	modal: {
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: '#00BCD4',
-		height: 300,
-		width: '80%',
-		borderRadius: 10,
-		borderWidth: 1,
-		borderColor: '#fff',
-		marginTop: 80,
-		marginLeft: 40,
-	},
-	text: {
-		color: '#3f2949',
-		marginTop: 10,
-	},
-	close: {
-		backgroundColor: 'red',
-	},
-};
-
 function RegistroSalida() {
-	const [students, setStudents] = useState([]);
 	const [search, setSearch] = useState('');
-	const [bikes, setBikes] = useState([]);
 	const [modalOpen, setModalOpen] = useState(false);
 
 	const handleSearch = ({ target: { value } }) => {
@@ -48,17 +15,7 @@ function RegistroSalida() {
 
 	const handleClick = (event) => {
 		if (event.key === 'Enter') {
-			callApi(search);
-		}
-	};
-
-	const callApi = async (code) => {
-		setBikes([]);
-		setStudents([]);
-		console.log(students);
-		if (code.length > 0) {
-			const res = await axios.get(`http://localhost:4000/api/students/${code}`);
-			setStudents(res.data);
+			setModalOpen((prev) => !prev);
 		}
 	};
 
@@ -79,7 +36,6 @@ function RegistroSalida() {
 			<button
 				className={styles.findButton}
 				onClick={() => {
-					callApi(search);
 					setModalOpen((prev) => !prev);
 				}}
 			>
