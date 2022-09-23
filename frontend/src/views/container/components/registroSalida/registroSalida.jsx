@@ -13,33 +13,31 @@ function RegistroSalida() {
 	const handleSearch = ({ target: { value } }) => {
 		setSearch(value);
 	};
-	
+
 	const generateDates = () => {
-    let date = new Date();
-    dateFinish = date.toLocaleString();
+		let date = new Date();
+		dateFinish = date.toLocaleString();
 	}
-	
+
 	const handleClick = (event) => {
 		if (event.key === 'Enter') {
 			setModalOpen((prev) => !prev);
 		}
 	};
-	
+
 	const checkExit = async () => {
 		generateDates();
 		const body = {
 			inside: 0,
-			fechaSalida:dateFinish
+			fechaSalida: dateFinish
 		}
 		if (search.length > 0) {
-			
+
 			const res = await axios.get(`http://localhost:4000/api/parking/${search}/1`);
-			if (res?.data[0]?.length > 0) {
-			await axios.put(`http://localhost:4000/api/parking/${res?.data[0]?._id}`, body);
-			setModalOpen((prev) => !prev);
+			if (res?.data?.length > 0) {
+				await axios.put(`http://localhost:4000/api/parking/${res?.data[0]?._id}`, body);
+				setModalOpen((prev) => !prev);
 			}
-		} else {
-			console.log("Se toteo");
 		}
 	}
 
@@ -59,14 +57,14 @@ function RegistroSalida() {
 			/>
 			<button
 				className={styles.findButton}
-				onClick={() => {checkExit()}}>
+				onClick={() => { checkExit() }}>
 				Buscar
 			</button>
 
 			<Modal
-                isOpen={modalOpen}
-                contentLabel="Example Modal"
-            >
+				isOpen={modalOpen}
+				contentLabel="Example Modal"
+			>
 				<div className="modalBackground">
 					<div className="modalContainer">
 						<div className="titleCloseBtn">
