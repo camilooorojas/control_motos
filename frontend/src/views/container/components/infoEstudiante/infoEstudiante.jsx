@@ -11,7 +11,7 @@ function InfoEstudiante(props) {
     const [newMoto, setNewMoto] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
     const [mensaje, setMensaje] = useState("");
-
+    let dateInit;
     useEffect(() => {
         const loadBikeInfo = async (code) => {
             const res = await axios.get(
@@ -29,8 +29,14 @@ function InfoEstudiante(props) {
         console.log("Llega a cambiar");
         setNewMoto(true);
     };
-
-    const addRegisterParking = async (plate, propertyId) => {
+  
+  const generateDates = () => {
+    let date = new Date();
+    dateInit = date.toLocaleString();
+    console.log('fecha', dateInit);
+  }
+  const addRegisterParking = async (plate, propertyId) => {
+        generateDates();
         const body = {
             cedula: student?.cedula,
             codigo: student?.codigo,
@@ -39,6 +45,7 @@ function InfoEstudiante(props) {
             placa: plate,
             id_tarjeta: propertyId,
             inside: 1,
+            fechaEntrada: dateInit
         };
         const response = await axios.get(
             `http://localhost:4000/api/parking/${student?.codigo}`

@@ -5,8 +5,9 @@ function SearchFilter(props) {
 
 	return (
         <div className={styles.container}>
-            <input 
-                type="text" 
+            <input
+                autoFocus
+                type="number" 
                 value={filter}
                 onChange={onChangeFilter}
             />

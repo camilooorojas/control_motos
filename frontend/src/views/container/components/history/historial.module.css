@@ -1,10 +1,10 @@
 .container {
     width: 100rem;
-
 }
 
 h2 {
     text-align: center;
+    margin-bottom: 50px;
 }
 
 .title {
@@ -24,29 +24,16 @@ h2 {
     font-size: 2rem;
 }
 
+thead tr {
+    text-align: center;
+}
+
 th {
     text-align: center;
 }
 
 td {
+    text-align: center;
     color: black;
     font-size: 2rem;
-}
-
-.findButton {
-    width: 12.1rem;
-    height: 4rem;
-    background: var(--red);
-    border: none;
-    color: var(--white);
-    font-size: 2rem;
-    border-radius: 1rem;
-    display: block;
-    transition: all ease 0.2s;
-    margin-bottom: 50px;
-}
-
-.findButton:hover {
-    background: var(--redLight);
-    transform: scale(1.1);
 }

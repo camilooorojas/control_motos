@@ -20,6 +20,12 @@ const parkingSchema = new Schema({
     },
     inside: {
         type: Number     
+    },
+    fechaEntrada: {
+        type: String
+    },
+    fechaSalida: {
+        type: String
     }
 }, {
     timestamps: true //fecha de creacion y actualizacion

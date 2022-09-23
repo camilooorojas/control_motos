@@ -50,7 +50,7 @@ function RegistroMoto(props) {
                     <h3>Placa:</h3>
                     <input required value={placa} onChange={handlePlaca} className={styles.formContainer_input} type="text" placeholder='Digite placa moto...' />
                     <h3>Id Tarjeta prpiedad:</h3>
-                    <input required value={idTarjeta} onChange={handleIdTarjeta} className={styles.formContainer_input} type="text" placeholder='Digite Id tarjeta de propiedad...' />
+                    <input required value={idTarjeta} onChange={handleIdTarjeta} className={styles.formContainer_input} type="number" placeholder='Digite Id tarjeta de propiedad...' />
                 </div>
                 <button type='submit' className={styles.formContainer_button}>Registrar</button>
 

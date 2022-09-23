@@ -19,7 +19,7 @@ parkingCtrl.getAllParkingOutSide = async (req, res) => {
 }
 
 parkingCtrl.createParking = async (req, res) => {
-    const { cedula, codigo, nombre, apellido, placa, id_tarjeta, inside} = req.body;
+    const { cedula, codigo, nombre, apellido, placa, id_tarjeta, inside,fechaEntrada,fechaSalida} = req.body;
     const newParking = new Parking({
         cedula: cedula,
         codigo: codigo,
@@ -27,7 +27,9 @@ parkingCtrl.createParking = async (req, res) => {
         apellido: apellido,
         placa, placa,
         id_tarjeta: id_tarjeta,
-        inside: inside
+        inside: inside,
+        fechaEntrada: fechaEntrada,
+        fechaSalida: fechaSalida
     });
     await newParking.save();
     res.json({message: 'Parking saved'})
@@ -44,7 +46,7 @@ parkingCtrl.getParking = async (req, res) => {
 };
 
 parkingCtrl.updateParking  = async (req, res) => {
-    const { cedula, codigo, nombre, apellido, placa, id_tarjeta, inside} = req.body;
+    const { cedula, codigo, nombre, apellido, placa, id_tarjeta, inside, fechaEntrada, fechaSalida} = req.body;
     await Parking.findByIdAndUpdate(req.params.id, {
         cedula,
         codigo,
@@ -52,7 +54,9 @@ parkingCtrl.updateParking  = async (req, res) => {
         apellido,
         placa,
         id_tarjeta,
-        inside
+        inside,
+        fechaEntrada,
+        fechaSalida
     });
     res.json({title: 'Update Parking'})
 };
@@ -61,5 +65,8 @@ parkingCtrl.deleteParking = async (req, res) => {
     const parking = await Parking.findByIdAndDelete(req.params.id);
     res.json({title: 'Delete Parking'})
 };
-
+parkingCtrl.getParkingOut = async (req, res) => {        
+    const parking = await Parking.find({'codigo': req.params.code},{'inside': req.params.inside});
+    res.json(parking);
+};
 module.exports = parkingCtrl;

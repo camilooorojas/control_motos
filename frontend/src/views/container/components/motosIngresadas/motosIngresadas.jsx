@@ -2,7 +2,8 @@ import styles from './motosIngresadas.module.css';
 
 import { SearchFilter } from '../searchFilter/SearchFilter';
 import { ButtonsContainer } from '../buttonsContainer/ButtonsContainer';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const data = [
 	{
@@ -99,21 +100,37 @@ const data = [
 
 function MotosIngresadas() {
 	const [filter, setFilter] = useState('');
-  	const [dataFiltered, setDataFiltered] = useState(data);
+  const [dataFiltered, setDataFiltered] = useState(data);
 
 	const onChangeFilter = (e) => {
 		setFilter(e.target.value);
 	};
-
+	useEffect(() => {
+        const loadHistory = async () => {
+            const res = await axios.get(
+                `http://localhost:4000/api/parking/`
+            );
+            setDataFiltered(res?.data);
+        };
+        
+    loadHistory()
+    
+	}, []);
+	const callData = async() => {
+		const response = await axios.get(
+                `http://localhost:4000/api/parking/`
+            );
+		setDataFiltered(response?.data);
+	}
 	const onFilterCode = () => {
-		let search = data.filter(item => item.codigo === parseInt(filter, 10))
-		setDataFiltered(search.length > 0 ? search : data);
+		let search = dataFiltered.filter(item => item.codigo === parseInt(filter, 10))
+    setDataFiltered(search.length > 0 ? search : dataFiltered);
 	}
 	
 	const onClearFields = () => {
-		setDataFiltered(data);
-		setFilter('');
-	}
+		callData();
+    setFilter('');
+  }
 
 	return (
 		<div className={styles.container}>
@@ -140,15 +157,15 @@ function MotosIngresadas() {
                         </tr>
                     </thead>
                     <tbody className={styles.tableWhite}>
-                        {dataFiltered?.map((item) => (
-                            <tr>
+                        {dataFiltered?.map((item, index) => (
+													<tr key={index}>
                                 <td>{item.nombre}</td>
                                 <td>{item.apellido}</td>
                                 <td>{item.codigo}</td>
                                 <td>{item.cedula}</td>
                                 <td>{item.id_tarjeta}</td>
                                 <td>{item.placa}</td>
-                                <td>{item.ingreso}</td>
+                                <td>{item.fechaEntrada}</td>
                             </tr>
                         ))}
                     </tbody>

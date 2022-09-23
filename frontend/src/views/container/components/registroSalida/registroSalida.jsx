@@ -2,22 +2,46 @@
 import { useState } from 'react';
 import styles from './registroSalidaStyles.module.css';
 import Modal from 'react-modal';
+import axios from 'axios';
 
 Modal.setAppElement('#root');
 
 function RegistroSalida() {
 	const [search, setSearch] = useState('');
 	const [modalOpen, setModalOpen] = useState(false);
-
+	let dateFinish;
 	const handleSearch = ({ target: { value } }) => {
 		setSearch(value);
 	};
-
+	
+	const generateDates = () => {
+    let date = new Date();
+    dateFinish = date.toLocaleString();
+	}
+	
 	const handleClick = (event) => {
 		if (event.key === 'Enter') {
 			setModalOpen((prev) => !prev);
 		}
 	};
+	
+	const checkExit = async () => {
+		generateDates();
+		const body = {
+			inside: 0,
+			fechaSalida:dateFinish
+		}
+		if (search.length > 0) {
+			
+			const res = await axios.get(`http://localhost:4000/api/parking/${search}/1`);
+			if (res?.data[0]?.length > 0) {
+			await axios.put(`http://localhost:4000/api/parking/${res?.data[0]?._id}`, body);
+			setModalOpen((prev) => !prev);
+			}
+		} else {
+			console.log("Se toteo");
+		}
+	}
 
 	return (
 		<div
@@ -35,10 +59,7 @@ function RegistroSalida() {
 			/>
 			<button
 				className={styles.findButton}
-				onClick={() => {
-					setModalOpen((prev) => !prev);
-				}}
-			>
+				onClick={() => {checkExit()}}>
 				Buscar
 			</button>
 
@@ -49,24 +70,15 @@ function RegistroSalida() {
 				<div className="modalBackground">
 					<div className="modalContainer">
 						<div className="titleCloseBtn">
-							<button onClick={() => setModalOpen(false)}>
-								X
-							</button>
 						</div>
 						<div className="title">
-							<h1>Are You Sure You Want to Continue?</h1>
+							<h1>Información de Registro Salida</h1>
 						</div>
 						<div className="body">
-							<p>The next page looks amazing. Hope you want to go there!</p>
+							<p>Registro de retiro éxitoso!</p>
 						</div>
 						<div className="footer">
-							<button
-								onClick={() => setModalOpen(false)}
-								id="cancelBtn"
-							>
-								Cancel
-							</button>
-							<button>Continue</button>
+							<button onClick={() => setModalOpen(false)}>Continuar</button>
 						</div>
 					</div>
 				</div>

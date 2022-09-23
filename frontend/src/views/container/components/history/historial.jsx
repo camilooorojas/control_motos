@@ -2,71 +2,46 @@ import styles from './historial.module.css';
 import { SearchFilter } from '../searchFilter/SearchFilter';
 import { ButtonsContainer } from '../buttonsContainer/ButtonsContainer';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 function Historial() {
   const [filter, setFilter] = useState('');
-  const [dataFiltered, setDataFiltered] = useState([
-		{
-			cedula: 1024576995,
-			codigo: 20202678023,
-			nombre: 'Camilo',
-			apellido: 'Rojas',
-			placa: 'UTB-32P',
-			id_tarjeta: '10008912347',
-			ingreso: '08:20',
-			salida: '17:52',
-		},	
-		{
-			cedula: 102687410,
-			codigo: 20158756925,
-			nombre: 'Milton',
-			apellido: 'Arango',
-			placa: 'TGB-12J',
-			id_tarjeta: '10006374158',
-			ingreso: '13:22',
-			salida: '18:07',
-		}
-  ]);
-
+  const [dataFiltered, setDataFiltered] = useState([]);
+  
+  useEffect(() => {
+        const loadHistory = async () => {
+            const res = await axios.get(
+                `http://localhost:4000/api/parking/outSide`
+            );
+            setDataFiltered(res?.data);
+        };
+        
+    loadHistory()
+    
+  }, []);
+  const callData = async() => {
+		const response = await axios.get(
+                `http://localhost:4000/api/parking/`
+            );
+		setDataFiltered(response?.data);
+	}
 	const onChangeFilter = (e) => {
 		setFilter(e.target.value);
 	};
-
+  
   const onFilterCode = () => {
-    let search = data.filter(item => item.codigo === parseInt(filter, 10))
-    setDataFiltered(search.length > 0 ? search : data);
+    let search = dataFiltered.filter(item => item.codigo === parseInt(filter, 10))
+    setDataFiltered(search.length > 0 ? search : dataFiltered);
   }
 
   const onClearFields = () => {
-    setDataFiltered(data);
+    callData();
     setFilter('');
   }
 
-  const data = [
-		{
-			cedula: 1024576995,
-			codigo: 20202678023,
-			nombre: 'Camilo',
-			apellido: 'Rojas',
-			placa: 'UTB-32P',
-			id_tarjeta: '10008912347',
-			ingreso: '08:20',
-			salida: '17:52',
-		},	
-		{
-			cedula: 102687410,
-			codigo: 20158756925,
-			nombre: 'Milton',
-			apellido: 'Arango',
-			placa: 'TGB-12J',
-			id_tarjeta: '10006374158',
-			ingreso: '13:22',
-			salida: '18:07',
-		}
-  ]
-
   return (
-    <div className={'d-flex flex-column justify-content-center align-items-center'}>
+    <div className={styles.container}>
             <h2>Historial</h2>
 			      <SearchFilter 
                 filter={filter} 
@@ -92,15 +67,15 @@ function Historial() {
                     </thead>
                     <tbody className={styles.tableWhite}>
                         {dataFiltered?.map((item, key) => (
-                            <tr key={key} className={`${styles.row}`}>
+                            <tr key={key}>
                                 <td>{item.nombre}</td>
                                 <td>{item.apellido}</td>
                                 <td>{item.codigo}</td>
                                 <td>{item.cedula}</td>
                                 <td>{item.id_tarjeta}</td>
                                 <td>{item.placa}</td>
-                                <td>{item.ingreso}</td>
-                                <td>{item.salida}</td>
+                                <td>{item.fechaEntrada}</td>
+                                <td>{item.fechaSalida}</td>
                             </tr>
                         ))}
                     </tbody>
