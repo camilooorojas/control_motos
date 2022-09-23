@@ -51,27 +51,20 @@ function RegistroMoto(props) {
         }
         const respC = await axios.post(`http://localhost:4000/api/credentials`, body);
         if (respC?.data?.message === "Credential saved") {
-            console.log("tipo: ", typeof (idTarjeta));
             const responseC = await axios.get(`http://localhost:4000/api/credentials/tarjeta/${idTarjeta}`);           
-            console.log("inffo", responseC.data[0]._id);
-            console.log("estudiante lo que existe", student[0]);
-            console.log("estudiante credencial", student[0].credential.length);
             addCredential.push(
                 responseC.data[0]._id
             );
-            if(student[0].credential.length !== 0){
-                console.log("No es nulo", student[0])
-                student[0].credential.forEach(credential => {
+            if(student.credential.length !== 0){
+                student.credential.forEach(credential => {
                     addCredential.push(credential);
                 });
                 
             }
-            console.log("addCredential: ", addCredential)
             const body ={
                 credential: addCredential
             }
-            const res = await axios.put(`http://localhost:4000/api/students/${student[0]?._id}`, body);    
-            console.log("res: ", res)
+            const res = await axios.put(`http://localhost:4000/api/students/${student?._id}`, body);    
             
         }
         setModalOpen((prev) => !prev);
