@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { FormularioEstudiante } from '../infoEstudiante/components/formularioEstudiante/formularioEstudiante';
 import { RegistroMoto } from '../registroMoto/registroMoto';
 import styles from './registroEstudianteStyles.module.css';
+import Modal from 'react-modal';
 //import RegistroMoto from '../registroMoto/registroMoto'
 
 
@@ -13,6 +14,8 @@ function RegistroEstudiante() {
   const [id, setId] = useState("");
   const [register, setRegister] = useState(true);
   const [student, setStudent] = useState({});
+  const [modalOpen, setModalOpen] = useState(false);
+  const [mensaje, setMensaje] = useState("");
 
   const updateFlag = () =>{
     setRegister(false);
@@ -35,17 +38,12 @@ function RegistroEstudiante() {
       const response = await axios.get(`http://localhost:4000/api/students/${code}`);
       setStudent(response.data);
       updateFlag();
-    } else {
-      console.log("Ya existe");
+    } else {      
+      setMensaje("El estudiante ya existe!");
+      setModalOpen((prev) => !prev);
     }
 
   }
-  /* const loadStudentInfo = async (code) => {
-    
-    console.log("info de res",res.data);
-    setUser(res.data);
-  } */
-
 
   return (
     <div className={styles.container}>
@@ -53,6 +51,27 @@ function RegistroEstudiante() {
       {register === true ? <FormularioEstudiante name={name} lastName={lastName} code={code} id={id} sendData={sendData}
       setName={setName} setLastName={setLastName} setCode={setCode} setId={setId}/>: <RegistroMoto student={student}/>}
       </>
+
+      <Modal
+        isOpen={modalOpen}
+        contentLabel="Example Modal"
+      >
+        <div className="modalBackground">
+          <div className="modalContainer">
+            <div className="titleCloseBtn">
+            </div>
+            <div className="title">
+              <h1>Información de Registro Estudiante</h1>
+            </div>
+            <div className="body">
+              <p>{mensaje}</p>
+            </div>
+            <div className="footer">
+              <button onClick={() => setModalOpen(false)}>Continuar</button>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
 
   );
