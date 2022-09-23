@@ -97,7 +97,7 @@ function InfoEstudiante(props) {
                         ))}
                     </div>
                 ) : (
-                    <RegistroMoto student={student} />
+                    <RegistroMoto student={student} setStudents={setStudents}/>
                 )}
                 <div className={styles.button_container}>
                     <button onClick={() => changeState()}>

@@ -22,7 +22,7 @@ function Historial() {
   }, []);
   const callData = async() => {
 		const response = await axios.get(
-                `http://localhost:4000/api/parking/`
+                `http://localhost:4000/api/parking/outside/`
             );
 		setDataFiltered(response?.data);
 	}

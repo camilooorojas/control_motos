@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 
 function RegistroMoto(props) {
-    const { student } = props
+    const { student, setStudents } = props
     const [placa, setPlaca] = useState("");
     const handlePlaca = ({ target: { value } }) => setPlaca(value);
     const [idTarjeta, setIdTarjeta] = useState("");
@@ -27,8 +27,9 @@ function RegistroMoto(props) {
             addCredential.push(
                 responseC.data[0]._id
             );
-            if(student.credential.length !== 0){
-                student.credential.forEach(credential => {
+            console.log("Problema:", student);
+            if(student?.credential?.length !== 0){
+                student?.credential?.forEach(credential => {
                     addCredential.push(credential);
                 });
                 
@@ -36,8 +37,13 @@ function RegistroMoto(props) {
             const body ={
                 credential: addCredential
             }
-            await axios.put(`http://localhost:4000/api/students/${student?._id}`, body);    
-            
+            console.log("student", student)
+            if(student?.credential?.length > 0){
+                await axios.put(`http://localhost:4000/api/students/${student?._id}`, body);    
+            }
+            else{
+                await axios.put(`http://localhost:4000/api/students/${student[0]?._id}`, body);
+            }
         }
         setModalOpen((prev) => !prev);
     }
@@ -71,7 +77,7 @@ function RegistroMoto(props) {
                             <p>Registro exitoso!</p>
                         </div>
                         <div className="footer">                           
-                            <Link to="/ingreso" onClick={() => setModalOpen(false)}>
+                            <Link to="/ingreso" onClick={() => {setModalOpen(false); setStudents([]);}}>
                                 <button>Continuar</button>
                             </Link>
 
