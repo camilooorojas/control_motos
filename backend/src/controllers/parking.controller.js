@@ -39,7 +39,7 @@ parkingCtrl.createParking = async (req, res) => {
 // };
 
 parkingCtrl.getParking = async (req, res) => {        
-    const parking = await Parking.find({'codigo': req.params.id});
+    const parking = await Parking.find({'id_tarjeta': req.params.id});
     res.json(parking);
 };
 

@@ -1,7 +1,7 @@
 import styles from './CardEstudiante.module.css';
 
 function CardEstudiante(props) {
-    const { plate, propertyId } = props;
+    const { plate, propertyId, addRegisterParking} = props;
 
     return (
         <div className={ styles.card_student }>
@@ -9,8 +9,8 @@ function CardEstudiante(props) {
             <p>Placa: { plate }</p>
             <p>Id tarjeta propiedad: { propertyId }</p>
             <div className={ styles.button_container }>
-                <button>Ingresa</button>
-            </div>
+                <button onClick={()=>addRegisterParking(plate, propertyId)}>Ingresa</button>
+            </div>           
         </div>
     )
 }

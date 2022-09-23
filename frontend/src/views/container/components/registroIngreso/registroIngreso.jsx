@@ -34,7 +34,7 @@ function RegistroIngreso(props) {
       <h2>Registro Ingreso</h2>
       <input autoFocus type="number" value={search} onKeyDown={handleClick} onChange={handleSearch} className={styles.inputName} placeholder="Digite código del estudiante..." />
       <button className={styles.findButton} onClick={() => { callApi(search) }}>Buscar</button>
-      <div className={styles.infoData}>{students.length > 0 ? <>  <InfoEstudiante student={students[0]} bikes={bikes} setBikes={setBikes} setNewMoto={setNewMoto} />  </> : <h2>El estudiante no está registrado</h2>}</div>
+      <div className={styles.infoData}>{students.length > 0 ? <>  <InfoEstudiante student={students[0]} setStudents={setStudents} bikes={bikes} setBikes={setBikes} setNewMoto={setNewMoto} />  </> : <h2>El estudiante no está registrado</h2>}</div>
     </div>
   );
 }
