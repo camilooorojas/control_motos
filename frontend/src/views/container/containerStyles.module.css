@@ -2,7 +2,7 @@
   height: auto;
   min-height: 100vh;
   padding-bottom: 10rem;
-  background: var(--redGray);
+  background: var(--white);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,12 +10,12 @@
 .container h1{
   font-weight: 600;
   font-size: 3.6rem;
-  color: var(--white);
-  margin-top: 7rem;
-  margin-bottom: 7rem;
+  color: var(--black);
+  margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 .container h2{
   font-weight: 600;
   font-size: 3.6rem;
-  color: var(--white);
+  color: var(--black);
 }

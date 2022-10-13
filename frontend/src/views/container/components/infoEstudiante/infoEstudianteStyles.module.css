@@ -41,6 +41,24 @@
     flex-wrap: wrap;
 }
 
+.button_back{
+    display: flex;
+    justify-content: center;
+}
+
+.button_back button{
+    border: none;
+    padding: 10px 25px;
+    font-size: 1.8rem;
+    border-radius: 1rem;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    background-color: var(--red);
+    color: #fff;
+    font-weight: bold;
+    transition: all .4s ease;
+}
+
 .button_container {
     display: flex;
     justify-content: center;

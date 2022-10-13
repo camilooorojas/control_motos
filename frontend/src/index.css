@@ -12,11 +12,11 @@ html{
   font-size: 62.5%;
 }
 :root{
-  --red: #460601;
-  --redLight: #731a14;
+  --red: rgb(151, 3, 3);
+  --redLight: #8c1b13;
   --redDark: #2a0300;
-  --redGray: #211C1B;
-  --white: #FFFFFF;
+  --white: #faf6f4;
+  --black: #000000;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

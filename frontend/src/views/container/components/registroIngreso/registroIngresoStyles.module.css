@@ -1,12 +1,13 @@
 
 .inputName{
   width: 45.6rem;
-  height: 3.8rem;
+  height: 4.5rem;
   font-size: 1.8rem;
   border-radius: 1rem;
   border:none;
   margin-top: 13rem;
   margin-bottom: 13rem;
+  background: rgba(207, 190, 190, 0.867);
 }
 .findButton{
   width: 12.1rem;

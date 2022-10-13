@@ -9,17 +9,17 @@ h2 {
 
 .title {
     background: black;
-    color: var(--white);
+    color: var(--black);
 }
 
 .tableBlack {
-    background: black;
-    color: var(--white);
+    background: rgb(102, 7, 7);
+    color: white;
     font-size: 2rem;
 }
 
 .tableWhite {
-    background: var(--white);
+    background: rgb(187, 183, 183);
     color: black;
     font-size: 2rem;
 }

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { InfoEstudiante } from '../infoEstudiante/infoEstudiante';
 import styles from './registroIngresoStyles.module.css';
@@ -23,15 +24,15 @@ function RegistroIngreso(props) {
       const res = await axios.get(`http://localhost:4000/api/students/${code}`);
       setStudents(res.data);
     }
-
   }
 
   return (
-    <div className={"d-flex flex-column justify-content-center align-items-center"}>
-      <h2>Registro Ingreso</h2>
+    <div>
+      <div className={"d-flex flex-column justify-content-center align-items-center box-input"}> 
+      {students.length > 0 ? <>  <InfoEstudiante student={students[0]} setStudents={setStudents} bikes={bikes} setBikes={setBikes} setSearch={setSearch} />  </> : <><h2>Registro Ingreso</h2>
       <input autoFocus type="number" value={search} onKeyDown={handleClick} onChange={handleSearch} className={styles.inputName} placeholder="Digite código del estudiante..." />
-      <button className={styles.findButton} onClick={() => { callApi(search) }}>Buscar</button>
-      <div className={styles.infoData}>{students.length > 0 ? <>  <InfoEstudiante student={students[0]} setStudents={setStudents} bikes={bikes} setBikes={setBikes} />  </> : <h2>El estudiante no está registrado</h2>}</div>
+      <button className={styles.findButton} onClick={() => { callApi(search) }}>Buscar</button></>}      
+      </div>
     </div>
   );
 }

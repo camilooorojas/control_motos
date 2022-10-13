@@ -1,11 +1,11 @@
 .navBar{
-  background: BLACK;
+  background: rgb(151, 3, 3);
   width: 100%;
-  height: 7rem;
+  height: 10rem;
   padding: 2rem;
 }
 img{
-  width: 7rem;
+  width: 6rem;
 }
 
 .menu__elements{
