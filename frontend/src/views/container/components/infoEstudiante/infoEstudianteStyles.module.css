@@ -80,3 +80,44 @@
 .button_container button:hover {
     transform: scale(1.1);
 }
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3rem;
+}
+.formContainer label{
+    font-size: 2rem;
+    width: 30rem;
+    margin-bottom: 3rem;
+}
+.formContainer_input{
+    width: 30rem;
+    height: 4rem;
+    font-size: 1.7rem;
+    border-radius: 0.5rem;
+    background: rgb(255, 255, 255);
+    border: 1px solid var(--red);
+    margin-bottom: 3rem;
+}
+.btn_action{
+    display: flex;
+    justify-content: space-between;
+    width: 220px;
+}
+.btn_action button{
+    background: var(--red);
+    color: var(--white);
+    font-size: 2rem;
+    padding: 1rem;
+    width: 10rem;
+    border: none;
+    border-radius: 0.5rem;
+    transition: all ease 0.5s;
+}
+.btn_action button:hover{
+    transform: scale(1.1);
+}
+.btn_action button:active{
+    transform: scale(0.9);
+}

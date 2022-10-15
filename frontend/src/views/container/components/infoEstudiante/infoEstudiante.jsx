@@ -177,94 +177,55 @@ function InfoEstudiante(props) {
             <h2>Editar Estudiante</h2>
            
               <div className={styles.formContainer}>
-                <h3>Código:</h3>
-                <label>{student?.codigo}</label>
-                <h3>Nombre:</h3>
-                <input
-                  required
-                  value={name}
-                  onChange={handleName}
-                  className={styles.formContainer_input}
-                  type="text"
-                  placeholder="Digite nombre del estudiante..."
-                />
-                <h3>Apellido:</h3>
-                <input
-                  required
-                  value={lastName}
-                  onChange={handleLastName}
-                  className={styles.formContainer_input}
-                  type="text"
-                  placeholder="Digite apellido del estudiante..."
-                />                               
-                <h3>Cédula:</h3>
-                <input
-                  required
-                  value={id}
-                  onChange={handleId}
-                  className={styles.formContainer_input}
-                  type="number"
-                  placeholder="Digite cédula del estudiante..."
-                />
+                <div>
+                  <h3>Código:</h3>
+                  <label>{student?.codigo}</label>
+                </div>
+                <div>
+                  <h3>Nombre:</h3>
+                  <input
+                    required
+                    value={name}
+                    onChange={handleName}
+                    className={styles.formContainer_input}
+                    type="text"
+                    placeholder="Digite nombre del estudiante..."
+                    />
+                </div>
+                <div>
+                  <h3>Apellido:</h3>
+                  <input
+                    required
+                    value={lastName}
+                    onChange={handleLastName}
+                    className={styles.formContainer_input}
+                    type="text"
+                    placeholder="Digite apellido del estudiante..."
+                    />                               
+                </div>
+                <div>
+                  <h3>Cédula:</h3>
+                  <input
+                    required
+                    value={id}
+                    onChange={handleId}
+                    className={styles.formContainer_input}
+                    type="number"
+                    placeholder="Digite cédula del estudiante..."
+                    />
+                </div>
+                <div className={styles.btn_action}>
+                <button onClick={() => editStudent()}>
+                  Editar
+                </button>
+                <button onClick={() => closedModalEdit()}>
+                  Cerrar
+                </button>
               </div>
-              <div className={styles.btn_action}>
-              <button className="btn btn-sucess" onClick={() => editStudent()}>
-                Editar
-              </button>
-              <button className="btn btn-sucess" onClick={() => closedModalEdit()}>
-                Cerrar
-              </button>
-            </div>
+              </div>
           </div>
         </div>
       </Modal>
-      {/* <Modal isOpen={modalEditMotorcycleOpen}>
-        <div className="modalBackground">
-          <div className="modalContainerField modalContainer">
-            <h2>Editar Estudiante</h2>
-           
-              <div className={styles.formContainer}>
-                <h3>Código:</h3>
-                <label>{student?.codigo}</label>
-                <h3>Nombre:</h3>
-                <input
-                  required
-                  value={name}
-                  onChange={handleName}
-                  className={styles.formContainer_input}
-                  type="text"
-                  placeholder="Digite nombre del estudiante..."
-                />
-                <h3>Apellido:</h3>
-                <input
-                  required
-                  value={lastName}
-                  onChange={handleLastName}
-                  className={styles.formContainer_input}
-                  type="text"
-                  placeholder="Digite apellido del estudiante..."
-                />                               
-                <h3>Cédula:</h3>
-                <input
-                  required
-                  value={id}
-                  onChange={handleId}
-                  className={styles.formContainer_input}
-                  type="number"
-                  placeholder="Digite cédula del estudiante..."
-                />
-              </div>
-              <div className={styles.btn_action}>
-              <button className="btn btn-sucess" onClick={() => editStudent()}>
-                Editar
-              </button>
-              <button className="btn btn-sucess" onClick={() => closedModalEdit()}>
-                Cerrar
-              </button>
-            </div>
-          </div>
-        </div>
-      </Modal> */}
     </div>
   );
 }
