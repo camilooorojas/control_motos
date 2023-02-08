@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import axios from "axios";
 
 function CardEstudiante(props) {
-  const { plate, propertyId, addRegisterParking } = props;
+  const { plate, propertyId, addRegisterParking, idMotorcycle, idStudent, bikes, setBikes, code} = props;
   const [modalOpen, setModalOpen] = useState(false);
   const [plateState, setPlateState] = useState(plate);
   const [cardId, setCardId] = useState(propertyId);
@@ -19,7 +19,10 @@ function CardEstudiante(props) {
     console.log("edita", plate, " ", propertyId);
   };
 
-  const deleteMotorcycle = () => {
+  const deleteMotorcycle = async () => {
+    
+    console.log("eliminaremos a: ", idStudent)
+    const res = await axios.get(`http://localhost:4000/api/students/${idStudent}`);
     setModalOpen((prev) => !prev);
     console.log("elimina", plate, " ", propertyId);
   };
@@ -29,16 +32,32 @@ function CardEstudiante(props) {
       placa: plateState,
       id_tarjeta: cardId
   }
-console.log("tiene", search)
-  const res = await axios.get(`http://localhost:4000/api/credentials/tarjeta/${search}`);
+console.log("EL ID ES 1", idMotorcycle)
+  //const res = await axios.get(`http://localhost:4000/api/credentials/tarjeta/${search}`);
+  const res = await axios.get(`http://localhost:4000/api/credentials/tarjeta/${idMotorcycle}`);
   console.log("devuelvo: ",res.data[0])
   if(res !== null){
-    await axios.put(`http://localhost:4000/api/credentials/${res._id}`, body);
-
-    console.log("Estamos editando", body);
+    //await axios.put(`http://localhost:4000/api/credentials/${res._id}`, body);
+    const re = await axios.put(`http://localhost:4000/api/credentials/${idMotorcycle}`, body);
+    setModalOpen((prev) => !prev);
+    if(re.status === 200){
+      setBikes([]);
+      code.forEach((element) => {
+        loadCard(element);
+      });
+    }
+    
   }
     
   };
+
+  const loadCard  = async (code) => {
+    const reponse = await axios.get(
+      `http://localhost:4000/api/credentials/${code}`
+    );
+    setBikes((prev) => [...prev, reponse.data]);
+    console.log("Estamos editando", reponse);
+  }
 
   return (
     <div className={styles.card_student}>

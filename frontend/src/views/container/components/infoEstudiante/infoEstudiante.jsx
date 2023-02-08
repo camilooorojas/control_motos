@@ -143,7 +143,12 @@ function InfoEstudiante(props) {
                 key={index}
                 propertyId={item.id_tarjeta}
                 plate={item.placa}
+                idMotorcycle={item._id}
+                idStudent={student.codigo}
                 addRegisterParking={addRegisterParking}
+                bikes={bikes}
+                setBikes={setBikes}
+                code={student.credential}
               />
             ))}
           </div>

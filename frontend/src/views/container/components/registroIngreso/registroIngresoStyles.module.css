@@ -32,3 +32,8 @@
   margin-top: 10rem;
 
 }
+
+.notFound{
+  font-size: 20px;
+  color: var(--redLight);
+}
