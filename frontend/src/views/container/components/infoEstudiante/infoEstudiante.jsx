@@ -28,7 +28,11 @@ function InfoEstudiante(props) {
       const res = await axios.get(
         `http://localhost:4000/api/credentials/${code}`
       );
-      setBikes((prev) => [...prev, res.data]);
+      if(res.data !== null){
+        console.log("Me cargan con: ", res.data, "+ ",code)
+        setBikes((prev) => [...prev, res.data]);
+      }
+      
     };
     setBikes([]);
     student?.credential.forEach((element) => {

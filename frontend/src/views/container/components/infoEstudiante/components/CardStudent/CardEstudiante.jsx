@@ -1,5 +1,5 @@
 import styles from "./CardEstudiante.module.css";
-import { RiEdit2Fill, RiDeleteBin2Fill } from "react-icons/ri";
+import { RiEdit2Fill, RiDeleteBin2Fill,  } from "react-icons/ri";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import axios from "axios";
@@ -7,6 +7,7 @@ import axios from "axios";
 function CardEstudiante(props) {
   const { plate, propertyId, addRegisterParking, idMotorcycle, idStudent, bikes, setBikes, code} = props;
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalDeleteOpen, setDeleteOpen] = useState(false);
   const [plateState, setPlateState] = useState(plate);
   const [cardId, setCardId] = useState(propertyId);
   const handlePlate = ({ target: { value } }) => setPlateState(value);
@@ -21,12 +22,21 @@ function CardEstudiante(props) {
 
   const deleteMotorcycle = async () => {
     
-    console.log("eliminaremos a: ", idStudent)
-    const res = await axios.get(`http://localhost:4000/api/students/${idStudent}`);
-    setModalOpen((prev) => !prev);
-    console.log("elimina", plate, " ", propertyId);
+    console.log("eliminaremos a: ", idMotorcycle)
+    //const res = await axios.get(`http://localhost:4000/api/students/${idStudent}`);
+    setDeleteOpen((prev) => !prev);
+    const res = await axios.delete(`http://localhost:4000/api/credentials/${idMotorcycle}`);
+    if(res.status === 200){
+      setBikes([]);
+      code.forEach((element) => {
+        loadCard(element);
+      });
+    }
   };
 
+  const hideModalDelete = async () => {
+    setDeleteOpen((prev) => !prev);
+  };
   const editMotorcycle = async () => {
     const body = {
       placa: plateState,
@@ -55,8 +65,10 @@ console.log("EL ID ES 1", idMotorcycle)
     const reponse = await axios.get(
       `http://localhost:4000/api/credentials/${code}`
     );
-    setBikes((prev) => [...prev, reponse.data]);
-    console.log("Estamos editando", reponse);
+    if(reponse.data !== null){
+      setBikes((prev) => [...prev, reponse.data]);
+      console.log("Estamos editando", reponse);
+    }
   }
 
   return (
@@ -70,7 +82,7 @@ console.log("EL ID ES 1", idMotorcycle)
             <div onClick={() => loadDataMotorcycle()}>
               <RiEdit2Fill />
             </div>
-            <div onClick={() => deleteMotorcycle()}>
+            <div onClick={() => hideModalDelete()}>
               <RiDeleteBin2Fill />
             </div>
           </div>
@@ -114,6 +126,27 @@ console.log("EL ID ES 1", idMotorcycle)
                 </button>
                 <button onClick={() => deleteMotorcycle()}>
                   Cerrar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Modal>
+      <Modal isOpen={modalDeleteOpen}>
+        <div className="modalBackground">
+          <div className="modalContainerField modalContainer">
+            <h2>Eliminar Moto</h2>
+
+            <div className={styles.formContainer}>
+              <p className={styles.txtConfirm}>
+                ¿Desea eliminar esta moto?
+              </p>
+              <div className={styles.btn_action}>
+                <button onClick={() => deleteMotorcycle()}>
+                  Eliminar
+                </button>
+                <button onClick={() => hideModalDelete()}>
+                  Cancelar
                 </button>
               </div>
             </div>

@@ -32,10 +32,14 @@ function RegistroSalida() {
 			fechaSalida: dateFinish
 		}
 		if (search.length > 0) {
-
+			console.log("prueba de search: ",search);
 			const res = await axios.get(`http://localhost:4000/api/parking/${search}/1`);
+			console.log("descubriendo",res);
 			if (res?.data?.length > 0) {
-				await axios.put(`http://localhost:4000/api/parking/${res?.data[0]?._id}`, body);
+				console.log("quiere editar: ", res?.data[res?.data.length - 1]?._id)
+				//const response = await axios.put(`http://localhost:4000/api/parking/${res?.data[0]?._id}`, body);
+				const response = await axios.put(`http://localhost:4000/api/parking/${res?.data[res?.data.length - 1]?._id}`, body);
+				console.log("edita?: ", response);
 				setModalOpen((prev) => !prev);
 			}
 		}
@@ -58,7 +62,7 @@ function RegistroSalida() {
 			<button
 				className={styles.findButton}
 				onClick={() => { checkExit() }}>
-				Buscar
+				Salida
 			</button>
 
 			<Modal
