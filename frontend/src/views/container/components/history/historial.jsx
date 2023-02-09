@@ -16,7 +16,6 @@ function Historial() {
             );
             
             setDataFiltered(res?.data.reverse());
-            console.log("ORDENAMIENT:", dataFiltered);
         };
         
     loadHistory()

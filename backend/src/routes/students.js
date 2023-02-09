@@ -10,7 +10,6 @@ router.route('/')
 
 
 router.route('/:id')
-    //.get((req, res) => res.send('ACA SI IMPRIMO '+ typeof(req.params.id)))   
     .get(getStudent)
     .put(updateStudent)
     .delete(deleteStudent)

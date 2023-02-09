@@ -20,7 +20,6 @@ function RegistroIngreso(props) {
   const callApi = async (code) => {
     setBikes([]);
     setStudents([]);
-    console.log(students);
     if (code.length > 0) {
       const res = await axios.get(`http://localhost:4000/api/students/${code}`);
       if(res.data.length > 0){
@@ -29,7 +28,6 @@ function RegistroIngreso(props) {
       }
       else{
         setStudentExist(false);
-        console.log("No existe el estudiante")
       }
     }
   }

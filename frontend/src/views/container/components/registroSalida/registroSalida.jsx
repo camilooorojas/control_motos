@@ -33,32 +33,24 @@ function RegistroSalida() {
 			fechaSalida: dateFinish
 		}
 		if (search.length > 0) {
-			console.log("prueba de search: ",search);
-			//const res = await axios.get(`http://localhost:4000/api/parking/${search}/1`);
 			const res = await axios.get(`http://localhost:4000/api/parking`);
-			console.log("base de datos aaaaaaaaaaaaaaaaaaaaaaaaaaaa", res);
 			let validInside = res?.data;
 			
-			console.log("descubriendo",res);
 			if (res?.data?.length > 0) {
 				let flag = false;
 				let temp;
 				setStudentExist(true);
 				validInside.forEach(element => {
-					console.log("element...", element);
 					if(element.codigo == search){
 						flag = true;
 						temp = element._id;
-						console.log("actualice: ")
 					}
 				});
 				if(flag){
 					const response = await axios.put(`http://localhost:4000/api/parking/${temp}`, body);
-					console.log("actualiza++++++++", temp)
 					setModalOpen((prev) => !prev);
 				}
 				else{
-					console.log("no existo")
 					setStudentExist(false);
 				}
 			}

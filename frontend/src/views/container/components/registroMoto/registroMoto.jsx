@@ -27,7 +27,6 @@ function RegistroMoto(props) {
             addCredential.push(
                 responseC.data[0]._id
             );
-            console.log("Problema:", student);
             if(student?.credential?.length !== 0){
                 student?.credential?.forEach(credential => {
                     addCredential.push(credential);
@@ -37,7 +36,6 @@ function RegistroMoto(props) {
             const body ={
                 credential: addCredential
             }
-            console.log("student", student)
             if(student?.credential?.length > 0){
                 await axios.put(`http://localhost:4000/api/students/${student?._id}`, body);    
             }

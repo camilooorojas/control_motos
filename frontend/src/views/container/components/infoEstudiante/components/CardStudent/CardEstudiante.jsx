@@ -17,21 +17,16 @@ function CardEstudiante(props) {
   const loadDataMotorcycle = () => {
     search = cardId;
     setModalOpen((prev) => !prev);
-    console.log("edita", plate, " ", propertyId);
   };
 
   const deleteMotorcycle = async () => {
     
-    console.log("eliminaremos a: ", idMotorcycle)
     setDeleteOpen((prev) => !prev);
     let studentRes = await axios.get(`http://localhost:4000/api/students/${idStudent}`)
-    console.log("bandera 1", studentRes.data[0] )
     if(studentRes.data[0] !== null){
       
       let cardBd = studentRes?.data[0]?.credential;
-      console.log("cardBd", cardBd);
       let resp = cardBd.filter(item => item !== idMotorcycle);
-      console.log("bandera 2", resp);
       const body = {
         credential: resp
       }
@@ -77,7 +72,6 @@ function CardEstudiante(props) {
     );
     if(reponse.data !== null){
       setBikes((prev) => [...prev, reponse.data]);
-      console.log("Estamos editando", reponse);
     }
   }
 

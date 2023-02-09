@@ -4,7 +4,6 @@ import { FormularioEstudiante } from '../infoEstudiante/components/formularioEst
 import { RegistroMoto } from '../registroMoto/registroMoto';
 import styles from './registroEstudianteStyles.module.css';
 import Modal from 'react-modal';
-//import RegistroMoto from '../registroMoto/registroMoto'
 
 
 function RegistroEstudiante() {
@@ -29,7 +28,6 @@ function RegistroEstudiante() {
       nombre: name,
       apellido: lastName
     }
-    console.log("primero");
     const resp = await axios.get(`http://localhost:4000/api/students/${code}`);
     if (resp?.data?.length === 0) {
       

@@ -33,7 +33,6 @@ credentialsCtrl.getCredentialByTarjeta = async (req, res) => {
 
 credentialsCtrl.updateCredential  = async (req, res) => {
     const { placa, id_tarjeta} = req.body;
-    //await Credential.findOneAndUpdate(req.params.id, {
     await Credential.findByIdAndUpdate(req.params.id, {
         placa,
         id_tarjeta,       

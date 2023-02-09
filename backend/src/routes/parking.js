@@ -12,7 +12,6 @@ router.route('/outside/')
     .get(getAllParkingOutSide)
 
 router.route('/:id')
-    //.get((req, res) => res.send('ACA SI IMPRIMO '+ typeof(req.params.id)))   
     .get(getParking)
     .put(updateParking)
     .delete(deleteParking)

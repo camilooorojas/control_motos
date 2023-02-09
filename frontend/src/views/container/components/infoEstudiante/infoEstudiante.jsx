@@ -29,7 +29,6 @@ function InfoEstudiante(props) {
         `http://localhost:4000/api/credentials/${code}`
       );
       if (res.data !== null) {
-        console.log("Me cargan con: ", res.data, "+ ", code);
         setBikes((prev) => [...prev, res.data]);
       }
     };
@@ -40,14 +39,12 @@ function InfoEstudiante(props) {
   }, [student, setBikes]);
 
   const changeState = () => {
-    console.log("Llega a cambiar");
     setNewMoto(true);
   };
 
   const generateDates = () => {
     let date = new Date();
     dateInit = date.toLocaleString();
-    console.log("fecha", dateInit);
   };
   const addRegisterParking = async (plate, propertyId) => {
     generateDates();
@@ -64,7 +61,6 @@ function InfoEstudiante(props) {
     const response = await axios.get(
       `http://localhost:4000/api/parking/${student?.codigo}`
     );
-    console.log("Formato", response);
     let flag = 0;
     response?.data?.forEach((element) => {
       if (element.inside === 1) {
@@ -77,7 +73,6 @@ function InfoEstudiante(props) {
       await axios.post(`http://localhost:4000/api/parking`, body);
       setMensaje("Moto Registrada Exitosamente!");
     }
-    console.log("mensaje: ", mensaje);
     setModalOpen((prev) => !prev);
   };
 
@@ -97,12 +92,10 @@ function InfoEstudiante(props) {
       nombre: name,
       apellido: lastName,
     };
-    console.log("Student", student);
     await axios.put(`http://localhost:4000/api/students/${student._id}`, body);
     const res = await axios.get(
       `http://localhost:4000/api/students/${student.codigo}`
     );
-    console.log("cambio", res.data);
     setStudents(res.data);
     setSearch("");
     setModalEditOpen(false);
@@ -113,9 +106,7 @@ function InfoEstudiante(props) {
     setLastName(element.apellido);
     setId(element.cedula);
 
-    console.log("entre");
     setModalEditOpen((prev) => !prev);
-    console.log(modalEditOpen);
   };
 
   const closedModalEdit = () => {
