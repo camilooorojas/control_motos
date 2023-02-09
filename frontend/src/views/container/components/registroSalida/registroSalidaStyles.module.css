@@ -10,7 +10,8 @@
 }
 
 .findButton {
-    width: 12.1rem;
+    width: auto;
+    padding: 6px;
     height: 4rem;
     background: var(--red);
     border: none;
@@ -35,3 +36,8 @@
     margin-top: 10rem;
 
 }
+
+.notFound{
+    font-size: 20px;
+    color: var(--redLight);
+  }

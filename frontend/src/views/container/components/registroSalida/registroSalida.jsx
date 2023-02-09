@@ -9,6 +9,7 @@ Modal.setAppElement('#root');
 function RegistroSalida() {
 	const [search, setSearch] = useState('');
 	const [modalOpen, setModalOpen] = useState(false);
+	const [studentExist, setStudentExist] = useState(true);
 	let dateFinish;
 	const handleSearch = ({ target: { value } }) => {
 		setSearch(value);
@@ -33,14 +34,36 @@ function RegistroSalida() {
 		}
 		if (search.length > 0) {
 			console.log("prueba de search: ",search);
-			const res = await axios.get(`http://localhost:4000/api/parking/${search}/1`);
+			//const res = await axios.get(`http://localhost:4000/api/parking/${search}/1`);
+			const res = await axios.get(`http://localhost:4000/api/parking`);
+			console.log("base de datos aaaaaaaaaaaaaaaaaaaaaaaaaaaa", res);
+			let validInside = res?.data;
+			
 			console.log("descubriendo",res);
 			if (res?.data?.length > 0) {
-				console.log("quiere editar: ", res?.data[res?.data.length - 1]?._id)
-				//const response = await axios.put(`http://localhost:4000/api/parking/${res?.data[0]?._id}`, body);
-				const response = await axios.put(`http://localhost:4000/api/parking/${res?.data[res?.data.length - 1]?._id}`, body);
-				console.log("edita?: ", response);
-				setModalOpen((prev) => !prev);
+				let flag = false;
+				let temp;
+				setStudentExist(true);
+				validInside.forEach(element => {
+					console.log("element...", element);
+					if(element.codigo == search){
+						flag = true;
+						temp = element._id;
+						console.log("actualice: ")
+					}
+				});
+				if(flag){
+					const response = await axios.put(`http://localhost:4000/api/parking/${temp}`, body);
+					console.log("actualiza++++++++", temp)
+					setModalOpen((prev) => !prev);
+				}
+				else{
+					console.log("no existo")
+					setStudentExist(false);
+				}
+			}
+			else{
+				setStudentExist(false);
 			}
 		}
 	}
@@ -59,10 +82,11 @@ function RegistroSalida() {
 				className={styles.inputName}
 				placeholder="Digite código del estudiante..."
 			/>
+			{(studentExist === false) && <p className={styles.notFound}>El estudiante no ha registrado ingreso.</p>}
 			<button
 				className={styles.findButton}
 				onClick={() => { checkExit() }}>
-				Salida
+				Registrar Salida
 			</button>
 
 			<Modal

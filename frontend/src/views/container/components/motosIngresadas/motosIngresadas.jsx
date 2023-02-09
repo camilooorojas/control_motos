@@ -5,102 +5,9 @@ import { ButtonsContainer } from '../buttonsContainer/ButtonsContainer';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const data = [
-	{
-		cedula: 123456790,
-		codigo: 62626262,
-		nombre: 'aaaa',
-		apellido: 'aaaa',
-		placa: 'TBK15',
-		id_tarjeta: '4567894654',
-		ingreso: 'hoy',
-		salida: 'mañana',
-	},
-	{
-		cedula: 123456790,
-		codigo: 62626562,
-		nombre: 'aaaa',
-		apellido: 'aaaa',
-		placa: 'TBK15',
-		id_tarjeta: '4567894654',
-		ingreso: 'hoy',
-		salida: 'mañana',
-	},
-	{
-		cedula: 123456790,
-		codigo: 626262,
-		nombre: 'aaaa',
-		apellido: 'aaaa',
-		placa: 'TBK15',
-		id_tarjeta: '4567894654',
-		ingreso: 'hoy',
-		salida: 'mañana',
-	},
-	{
-		cedula: 123456790,
-		codigo: 62346262,
-		nombre: 'aaaa',
-		apellido: 'aaaa',
-		placa: 'TBK15',
-		id_tarjeta: '4567894654',
-		ingreso: 'hoy',
-		salida: 'mañana',
-	},
-	{
-		cedula: 123456790,
-		codigo: 6263462,
-		nombre: 'aaaa',
-		apellido: 'aaaa',
-		placa: 'TBK15',
-		id_tarjeta: '4567894654',
-		ingreso: 'hoy',
-		salida: 'mañana',
-	},
-	{
-		cedula: 123456790,
-		codigo: 6263262,
-		nombre: 'aaaa',
-		apellido: 'aaaa',
-		placa: 'TBK15',
-		id_tarjeta: '4567894654',
-		ingreso: 'hoy',
-		salida: 'mañana',
-	},
-	{
-		cedula: 123456790,
-		codigo: 626226262,
-		nombre: 'aaaa',
-		apellido: 'aaaa',
-		placa: 'TBK15',
-		id_tarjeta: '4567894654',
-		ingreso: 'hoy',
-		salida: 'mañana',
-	},
-	{
-		cedula: 123456790,
-		codigo: 622362,
-		nombre: 'aaaa',
-		apellido: 'aaaa',
-		placa: 'TBK15',
-		id_tarjeta: '4567894654',
-		ingreso: 'hoy',
-		salida: 'mañana',
-	},
-	{
-		cedula: 123456790,
-		codigo: 626987262,
-		nombre: 'aaaa',
-		apellido: 'aaaa',
-		placa: 'TBK15',
-		id_tarjeta: '4567894654',
-		ingreso: 'hoy',
-		salida: 'mañana',
-	},
-];
-
 function MotosIngresadas() {
 	const [filter, setFilter] = useState('');
-  const [dataFiltered, setDataFiltered] = useState(data);
+  const [dataFiltered, setDataFiltered] = useState([]);
 
 	const onChangeFilter = (e) => {
 		setFilter(e.target.value);
@@ -124,7 +31,10 @@ function MotosIngresadas() {
 	}
 	const onFilterCode = () => {
 		let search = dataFiltered.filter(item => item.codigo === parseInt(filter, 10))
-    setDataFiltered(search.length > 0 ? search : dataFiltered);
+		if(search.length <= 0){
+			onClearFields();
+		  }
+    	setDataFiltered(search.length > 0 ? search : dataFiltered);
 	}
 	
 	const onClearFields = () => {

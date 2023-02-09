@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import axios from "axios";
 
 function CardEstudiante(props) {
-  const { plate, propertyId, addRegisterParking, idMotorcycle, idStudent, bikes, setBikes, code} = props;
+  const { plate, propertyId, addRegisterParking, idMotorcycle, idStudent, bikes, setBikes, code, studentId} = props;
   const [modalOpen, setModalOpen] = useState(false);
   const [modalDeleteOpen, setDeleteOpen] = useState(false);
   const [plateState, setPlateState] = useState(plate);
@@ -23,8 +23,22 @@ function CardEstudiante(props) {
   const deleteMotorcycle = async () => {
     
     console.log("eliminaremos a: ", idMotorcycle)
-    //const res = await axios.get(`http://localhost:4000/api/students/${idStudent}`);
     setDeleteOpen((prev) => !prev);
+    let studentRes = await axios.get(`http://localhost:4000/api/students/${idStudent}`)
+    console.log("bandera 1", studentRes.data[0] )
+    if(studentRes.data[0] !== null){
+      
+      let cardBd = studentRes?.data[0]?.credential;
+      console.log("cardBd", cardBd);
+      let resp = cardBd.filter(item => item !== idMotorcycle);
+      console.log("bandera 2", resp);
+      const body = {
+        credential: resp
+      }
+      await axios.put(`http://localhost:4000/api/students/${studentId}`, body)
+    }
+
+    
     const res = await axios.delete(`http://localhost:4000/api/credentials/${idMotorcycle}`);
     if(res.status === 200){
       setBikes([]);
@@ -42,12 +56,8 @@ function CardEstudiante(props) {
       placa: plateState,
       id_tarjeta: cardId
   }
-console.log("EL ID ES 1", idMotorcycle)
-  //const res = await axios.get(`http://localhost:4000/api/credentials/tarjeta/${search}`);
   const res = await axios.get(`http://localhost:4000/api/credentials/tarjeta/${idMotorcycle}`);
-  console.log("devuelvo: ",res.data[0])
   if(res !== null){
-    //await axios.put(`http://localhost:4000/api/credentials/${res._id}`, body);
     const re = await axios.put(`http://localhost:4000/api/credentials/${idMotorcycle}`, body);
     setModalOpen((prev) => !prev);
     if(re.status === 200){

@@ -14,7 +14,9 @@ function Historial() {
             const res = await axios.get(
                 `http://localhost:4000/api/parking/outSide`
             );
-            setDataFiltered(res?.data);
+            
+            setDataFiltered(res?.data.reverse());
+            console.log("ORDENAMIENT:", dataFiltered);
         };
         
     loadHistory()
@@ -32,6 +34,9 @@ function Historial() {
   
   const onFilterCode = () => {
     let search = dataFiltered.filter(item => item.codigo === parseInt(filter, 10))
+    if(search.length <= 0){
+      onClearFields();
+    }
     setDataFiltered(search.length > 0 ? search : dataFiltered);
   }
 

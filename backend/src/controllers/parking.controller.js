@@ -3,11 +3,6 @@ const parkingCtrl = {};
 
 const Parking = require('../models/Parking');
 
-// parkingCtrl.getAllParking = async (req, res) => {
-//     const parking = await Parking.find();
-//     res.json(parking);
-// }
-
 parkingCtrl.getAllParkingInside = async (req, res) => {
     const parking = await Parking.find({'inside': 1});
     res.json(parking);
@@ -35,11 +30,6 @@ parkingCtrl.createParking = async (req, res) => {
     res.json({message: 'Parking saved'})
 };
 
-// parkingCtrl.getParking = async (req, res) => {        
-//     const parking = await Parking.find({'codigo': req.params.id});
-//     res.json(parking);
-// };
-
 parkingCtrl.getParking = async (req, res) => {        
     const parking = await Parking.find({'codigo': req.params.id});
     res.json(parking);
@@ -65,8 +55,5 @@ parkingCtrl.deleteParking = async (req, res) => {
     const parking = await Parking.findByIdAndDelete(req.params.id);
     res.json({title: 'Delete Parking'})
 };
-parkingCtrl.getParkingOut = async (req, res) => {        
-    const parking = await Parking.find({'codigo': req.params.code},{'inside': req.params.inside});
-    res.json(parking);
-};
+
 module.exports = parkingCtrl;
